@@ -1,0 +1,17 @@
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\bin\Debug\net6.0\ObjectsFileChecker.exe
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\bin\Debug\net6.0\ObjectsFileChecker.deps.json
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\bin\Debug\net6.0\ObjectsFileChecker.runtimeconfig.json
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\bin\Debug\net6.0\ObjectsFileChecker.dll
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\bin\Debug\net6.0\ObjectsFileChecker.pdb
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\bin\Debug\net6.0\YamlDotNet.dll
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.csproj.AssemblyReference.cache
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.AssemblyInfoInputs.cache
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.AssemblyInfo.cs
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.csproj.CoreCompileInputs.cache
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.csproj.CopyComplete
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.dll
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\refint\ObjectsFileChecker.dll
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.pdb
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ObjectsFileChecker.genruntimeconfig.cache
+C:\Users\Kim\source\repos\ObjectsFileChecker\ObjectsFileChecker\obj\Debug\net6.0\ref\ObjectsFileChecker.dll

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "45bwPIL7kLWXiaF3INTTCT/wov7Bkl+bnZ7YyHv0Hu39LhW2R8NjZSE8TJ6oZ+Qn0H2KILsycDFETQTih+uZHg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kim\\source\\repos\\ObjectsFileChecker\\ObjectsFileChecker\\ObjectsFileChecker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kim\\.nuget\\packages\\yamldotnet\\11.2.1\\yamldotnet.11.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}
