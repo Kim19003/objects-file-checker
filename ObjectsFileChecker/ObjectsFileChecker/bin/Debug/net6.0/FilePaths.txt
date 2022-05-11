@@ -1,0 +1,2 @@
+Objects file path: "D:\stuff\unity\Minigolf Game\Assets\Values\Objects.yaml"
+Object tags file path: "D:\OneDrive\Tiedostot\Koodaaminen ja pelit\pelit\minigolf tiedostoja\ObjectTags.txt"

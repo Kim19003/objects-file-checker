@@ -16,10 +16,13 @@ namespace Program
 
             PrintHeader();
 
-            string objectsFilePath;
+            string objectsFilePath, objectTagsFilePath;
             try
             {
-                objectsFilePath = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ObjectsFilePath.txt"))[0];
+                string[] fileLines = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FilePaths.txt"));
+
+                objectsFilePath = fileLines[0][(fileLines[0].IndexOf('"') + 1)..fileLines[0].LastIndexOf('"')];
+                objectTagsFilePath = fileLines[1][(fileLines[1].IndexOf('"') + 1)..fileLines[1].LastIndexOf('"')];
             }
             catch (Exception ex)
             {
@@ -42,7 +45,7 @@ namespace Program
                         PrintAllObjects(deserializer, objectsFilePath);
                         break;
                     case ConsoleKey.D2:
-                        RunChecker(deserializer, objectsFilePath);
+                        RunChecker(deserializer, objectsFilePath, objectTagsFilePath);
                         break;
                 }
 
@@ -98,7 +101,7 @@ namespace Program
 
                     foreach (var @object in @class.Objects)
                     {
-                        WriteWhiteText($"{@object.Id} = {@object.Name} {{'{@object.Tags}'}}");
+                        WriteWhiteText($"{@object.Id} = {@object.Name} {{{string.Join(", ", @object.Tags)}}}");
                     }
                 }
 
@@ -114,14 +117,14 @@ namespace Program
                 WriteWhiteText("");
                 foreach (var @object in allObjects)
                 {
-                    WriteWhiteText($"{@object.Id} = {@object.Name} {{'{@object.Tags}'}}");
+                    WriteWhiteText($"{@object.Id} = {@object.Name} {{{string.Join(", ", @object.Tags)}}}");
                 }
 
                 WriteWhiteText($"\n\nPrinted {allObjects.Count} objects");
             }
         }
 
-        private static void RunChecker(IDeserializer deserializer, string objectsFilePath)
+        private static void RunChecker(IDeserializer deserializer, string objectsFilePath, string objectTagsFilePath)
         {
             PrintHeader();
 
@@ -142,7 +145,7 @@ namespace Program
             CheckForIdSequence(allObjects);
 
             WriteGrayText($"\nRunning test '{nameof(CheckForCorrectFormatting)}'...");
-            CheckForCorrectFormatting(objectClasses, allObjects);
+            CheckForCorrectFormatting(objectClasses, allObjects, objectTagsFilePath);
 
             WriteWhiteText($"\n\nChecking finished with {ErrorAmount} error(s) and {WarningAmount} warning(s) ({objectClasses.Count} classes and {allObjects.Count} objects checked)");
         }
@@ -185,7 +188,7 @@ namespace Program
             }
         }
 
-        private static void CheckForCorrectFormatting(List<ObjectClass> objectClasses, List<Object> objects)
+        private static void CheckForCorrectFormatting(List<ObjectClass> objectClasses, List<Object> objects, string objectTagsFilePath)
         {
             int errors = 0, warnings = 0;
 
@@ -211,6 +214,12 @@ namespace Program
                     WriteWarningText($"Class with name '{objectClass.Class}' contains whitespaces in it's name");
                     warnings++;
                 }
+            }
+
+            List<string> objectTags = new();
+            foreach (string line in File.ReadAllLines(objectTagsFilePath))
+            {
+                objectTags.Add(line[..line.IndexOf(':')]);
             }
 
             foreach (var @object in objects)
@@ -254,6 +263,17 @@ namespace Program
                     }
                     catch
                     {
+                    }
+                }
+                if (@object.Tags.Length > 0)
+                {
+                    foreach (string tag in @object.Tags)
+                    {
+                        if (!objectTags.Contains(tag))
+                        {
+                            WriteWarningText($"Object with name '{@object.Name}' contains a tag that isn't in the declared tags list ('{tag}')");
+                            warnings++;
+                        }
                     }
                 }
             }
@@ -384,13 +404,6 @@ namespace Program
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Tags { get; set; }
-    }
-
-    public class LoadedObject
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Class { get; set; }
+        public string[] Tags { get; set; }
     }
 }
