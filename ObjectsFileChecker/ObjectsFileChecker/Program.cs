@@ -37,20 +37,51 @@ namespace Program
             {
                 PrintHeader();
 
-                WriteWhiteText($"(1) Print all objects\n(2) Run checker");
+                WriteWhiteText($"(1) Find objects\n(2) Show all objects\n(3) Run checker");
                 
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.D1:
-                        PrintAllObjects(deserializer, objectsFilePath);
+                        FindObjects(deserializer, objectsFilePath);
                         break;
                     case ConsoleKey.D2:
+                        PrintAllObjects(deserializer, objectsFilePath);
+                        break;
+                    case ConsoleKey.D3:
                         RunChecker(deserializer, objectsFilePath, objectTagsFilePath);
                         break;
                 }
 
                 Console.ReadLine();
             }
+        }
+
+        private static void FindObjects(IDeserializer deserializer, string objectsFilePath)
+        {
+            PrintHeader();
+
+            List<ObjectClass> objectClasses = deserializer.Deserialize<List<ObjectClass>>(File.ReadAllText(objectsFilePath));
+
+            Console.Write("Search term: ");
+            string input = Console.ReadLine() ?? "";
+
+            Console.WriteLine("\n");
+
+            int foundObjects = 0;
+            foreach (ObjectClass objectClass in objectClasses)
+            {
+                foreach (Object @object in objectClass.Objects)
+                {
+                    if (@object.Id.ToString().Contains(input) || @object.Name.ToLower().Contains(input.ToLower()) ||
+                        @object.Tags.Any(t => t.ToLower().Contains(input.ToLower())))
+                    {
+                        foundObjects++;
+                        WriteWhiteText($"{@object.Id} = {@object.Name} {{{string.Join(", ", @object.Tags)}}}");
+                    }
+                }
+            }
+
+            WriteWhiteText($"{(foundObjects > 0 ? "\n\n" : "")}Found {foundObjects} objects");
         }
 
         private static void PrintAllObjects(IDeserializer deserializer, string objectsFilePath)
